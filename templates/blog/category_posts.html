@@ -1,0 +1,95 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block styles %}
+<link href="{% static 'css/posts.css' %}" rel="stylesheet">
+{% endblock styles %}
+
+{% block content %}
+<div class="page-title wb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <h2>{{ category.title }}</h2>
+            </div><!-- end col -->
+            <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'main_page' %}">Home</a></li>
+                    <li class="breadcrumb-item active">{{ category.title }}</li>
+                </ol>
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div><!-- end page-title -->
+
+<section class="section wb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+
+                    <div class="blog-grid-system">
+                        <div class="row">
+                            {% for post in posts %}
+                            <div class="col-md-6">
+                                <div class="blog-box">
+                                    <div class="post-media post-div">
+                                        <a href="#">
+                                            {% if post.image %}
+                                            <img src="{{ post.image.url }}" alt="" class="img-fluid">
+                                            {% endif %}
+                                            <div class="hovereffect">
+                                                <span></span>
+                                            </div><!-- end hover -->
+                                        </a>
+                                    </div><!-- end media -->
+                                    <div class="blog-meta big-meta">
+                                        <h4><a href="#">{{ post.title }}</a></h4>
+                                        <p>{{ post.post|truncatechars:250 }}</p>
+                                        <small><a href="#">{{ category.title }}</a></small>
+                                        <small><a href="#">{{ post.date_created }}</a></small>
+                                        <small><a href="#">by {{ post.author.username }}</a></small>
+                                    </div><!-- end meta -->
+                                </div><!-- end blog-box -->
+                            </div><!-- end col -->
+                            {% endfor %}
+                        </div><!-- end row -->
+                    </div><!-- end blog-grid-system -->
+                </div><!-- end page-wrapper -->
+
+                <hr class="invis3">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end col -->
+
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h2 class="widget-title">Search</h2>
+                        <form class="form-inline search-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search on the site">
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div><!-- end widget -->
+                </div><!-- end sidebar -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+{% endblock content %}
