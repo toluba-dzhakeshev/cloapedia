@@ -23,6 +23,13 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    HOT_POS_CHOICES = (
+        ('pos1', 'pos1'),
+        ('pos2', 'pos2'),
+        ('pos3', 'pos3'),
+        ('pos4', 'pos4'),
+        ('pos5', 'pos5'),
+    )
     category = models.ForeignKey(Category, on_delete=models.SET_NULL,
                                  blank=True, null=True, related_name='posts')
     author = models.ForeignKey(Profile, on_delete=models.SET_NULL,
@@ -33,6 +40,7 @@ class Post(models.Model):
     rating = models.FloatField(default=0)
     seen_amount = models.PositiveIntegerField(default=0)
     published = models.BooleanField(default=False)
+    hot_pos = models.CharField(choices=HOT_POS_CHOICES, max_length=4, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 

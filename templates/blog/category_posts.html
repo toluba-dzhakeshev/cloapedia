@@ -35,7 +35,7 @@
                             <div class="col-md-6">
                                 <div class="blog-box">
                                     <div class="post-media post-div">
-                                        <a href="#">
+                                        <a href="{% url 'post_detail' post.id  %}">
                                             {% if post.image %}
                                             <img src="{{ post.image.url }}" alt="" class="img-fluid">
                                             {% endif %}
@@ -45,10 +45,10 @@
                                         </a>
                                     </div><!-- end media -->
                                     <div class="blog-meta big-meta">
-                                        <h4><a href="#">{{ post.title }}</a></h4>
+                                        <h4><a href="{% url 'post_detail' post.id  %}">{{ post.title }}</a></h4>
                                         <p>{{ post.post|truncatechars:250 }}</p>
-                                        <small><a href="#">{{ category.title }}</a></small>
-                                        <small><a href="#">{{ post.date_created }}</a></small>
+                                        <small><a href="{% url 'category_details' category.id  %}">{{ category.title }}</a></small>
+                                        <small><a href="{% url 'post_detail' post.id  %}">{{ post.date_created|date:"d M, Y" }}</a></small>
                                         <small><a href="#">by {{ post.author.username }}</a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end blog-box -->
