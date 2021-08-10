@@ -49,3 +49,17 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=50)
+    text = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+
+
+class Rating(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_rating')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile_rating')
+    rate = models.PositiveIntegerField()
+    rated = models.BooleanField(default=False)

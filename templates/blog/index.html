@@ -1,6 +1,17 @@
 {% extends '../base.html' %}
 
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+{% if message.tags == 'success' %}
+    <div class="alert alert-success">
+{% else %}
+    <div class="alert alert-danger">
+        {% endif %}
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
 <!--<section class="section first-section">-->
 <!--    <div class="container-fluid">-->
 <!--        <div class="masonry-blog clearfix">-->
@@ -117,7 +128,7 @@
                 </div><!-- end meta -->
             </div><!-- end blog-box -->
             <hr class="invis">
-            {% endif %}x`
+            {% endif %}
             {% endfor %}
 
         </div><!-- end blog-list -->
